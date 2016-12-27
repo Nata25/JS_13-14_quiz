@@ -1,5 +1,3 @@
-
-
 data = {
     heading: "Тест із програмування",
 
@@ -22,7 +20,7 @@ data = {
         },
 
         {
-            title: "Запитання 2",
+            title: "Запитання 3",
             answers: {
                 7: "Варіант відповіді 1",
                 8: "Варіант відповіді 2",
@@ -30,8 +28,24 @@ data = {
         }
     ],
 
+    check: [2, 4, 8, 9],
+
     submit: "Перевірити мої результати"
 }
 
 // localStorage.removeItem("test");
 localStorage.setItem("test", JSON.stringify(data));
+
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var answers = document.querySelectorAll("input:checked");
+    var total = answers.length;
+    var pass = true;
+    for (var i = 0; i < total; i++) {
+        if (data.check.indexOf(+answers[i].name) == -1) {
+            pass = false;
+        }
+    }
+    var message = pass ? "correct" : "incorrect";
+    console.log(message);
+});
