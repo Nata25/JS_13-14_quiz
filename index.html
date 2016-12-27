@@ -8,39 +8,32 @@
     </head>
     <body>
 
-        <form method="post" action="index.html" class="pure-form">
-            <h1>Тест по программированию</h1>
-            <ol>
-                <li>Вопрос 1
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="1">Вариант ответа 1</label>
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="2">Вариант ответа 2</label>
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="3">Вариант ответа 3</label>
-                </li>
-                <li>Вопрос 2
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="4">Вариант ответа 1</label>
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="5">Вариант ответа 2</label>
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="6">Вариант ответа 3</label>
-                </li>
-                <li>Вопрос 3
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="7">Вариант ответа 1</label>
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="8">Вариант ответа 2</label>
-                    <label class="pure-checkbox">
-                        <input type="checkbox" name="9">Вариант ответа 3</label>
-                </li>
-            </ol>
-            <input type="submit" value="Проверить мои результаты" class="pure-button pure-button-primary">
-        </form>
+        <form method="post" action="index.html" class="pure-form"></form>
+
+            <script type="text/template" id="lodash_tmpl">
+
+                <h1><%= data.heading %></h1>
+                <ol>
+                    <% for (var i = 0; i < data.questions.length; i++) { %>
+                        <% var q = data.questions[i]; %>
+                        <li>
+                            <%= data.questions[i].title %>
+                            <% for (var name in q.answers) { %>
+                                <label class="pure-checkbox">
+                                    <% console.log(name); %>
+                                    <input type="checkbox" name="<%= name %>">
+                                    <% console.log(q.answers); %>
+                                    <%= q.answers[name] %>
+                                </label>
+                                <% } %>
+                        </li>
+                <% } %>
+                </ol>
+                <input type="submit" value="<%= data.submit%>" class="pure-button pure-button-primary">
+            </script>
 
         <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
-        <script type="text/javascript" src="js/script.js">
-        </script>
+        <!-- <script src="js/micro-template.js"></script> -->
+        <script src="js/script.js"></script>
     </body>
 </html>

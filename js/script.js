@@ -33,19 +33,27 @@ data = {
     submit: "Перевірити мої результати"
 }
 
-// localStorage.removeItem("test");
-localStorage.setItem("test", JSON.stringify(data));
+document.addEventListener("DOMContentLoaded", function() {
 
-document.querySelector("form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    var answers = document.querySelectorAll("input:checked");
-    var total = answers.length;
-    var pass = true;
-    for (var i = 0; i < total; i++) {
-        if (data.check.indexOf(+answers[i].name) == -1) {
-            pass = false;
+    var template = _.template(lodash_tmpl.innerHTML);
+    document.forms[0].innerHTML = template({data});
+    // var template = lodash_tmpl.innerHTML;
+    // var rendered = tmpl(template, data);
+    // document.forms[0].innerHTML = rendered;
+    localStorage.setItem("test", JSON.stringify(data));
+
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var answers = document.querySelectorAll("input:checked");
+        var total = answers.length;
+        var pass = true;
+        for (var i = 0; i < total; i++) {
+            if (data.check.indexOf(+answers[i].name) == -1) {
+                pass = false;
+            }
         }
-    }
-    var message = pass ? "correct" : "incorrect";
-    console.log(message);
+        var message = pass ? "correct" : "incorrect";
+        console.log(message);
+    });
+
 });
