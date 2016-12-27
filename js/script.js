@@ -39,19 +39,26 @@ var object = {
 localStorage.setItem("test", JSON.stringify(object));
 var data = JSON.parse(localStorage.getItem("test"));
 
+// On document load
 document.addEventListener("DOMContentLoaded", function() {
 
+    // Render test via template
     var template = _.template(lodash_tmpl.innerHTML);
     document.forms[0].innerHTML = template({data});
 
+    // On submit, analyze results
     document.querySelector("form").addEventListener("submit", function(event) {
         event.preventDefault();
         var answers = document.querySelectorAll("input:checked");
         var total = answers.length;
-        var pass = true;
-        for (var i = 0; i < total; i++) {
-            if (data.check.indexOf(+answers[i].name) == -1) {
-                pass = false;
+        var pass = false;
+        if (total == data.check.length) {
+            pass = true;
+            for (var i = 0; i < total; i++) {
+                if (data.check.indexOf(+answers[i].name) == -1) {
+                    pass = false;
+                    break;
+                }
             }
         }
         var feedback = pass ? { message: "Correct!", className: "success" }
@@ -71,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.appendChild(win);
 
         var close = document.createElement("span");
-        close.innerHTML = "Close";
+        close.innerHTML = "Закрыть";
         close.className = "pure-button pure-button-primary close_button";
         win.appendChild(close);
 
@@ -80,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.removeChild(win);
             document.body.removeChild(overlay);
             close = null; // clean up eventlistener
-
+            document.forms[0].reset();
         });
     });
 
