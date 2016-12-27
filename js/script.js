@@ -1,6 +1,6 @@
 "use strict";
 
-var data = {
+var object = {
 
     heading: "Тест по программированию",
 
@@ -36,11 +36,13 @@ var data = {
     submit: "Проверить мои результаты"
 }
 
+localStorage.setItem("test", JSON.stringify(object));
+var data = JSON.parse(localStorage.getItem("test"));
+
 document.addEventListener("DOMContentLoaded", function() {
 
     var template = _.template(lodash_tmpl.innerHTML);
     document.forms[0].innerHTML = template({data});
-    localStorage.setItem("test", JSON.stringify(data));
 
     document.querySelector("form").addEventListener("submit", function(event) {
         event.preventDefault();
