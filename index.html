@@ -20,9 +20,7 @@
                             <%= data.questions[i].title %>
                             <% for (var name in q.answers) { %>
                                 <label class="pure-checkbox">
-                                    <% console.log(name); %>
                                     <input type="checkbox" name="<%= name %>">
-                                    <% console.log(q.answers); %>
                                     <%= q.answers[name] %>
                                 </label>
                                 <% } %>
@@ -33,7 +31,6 @@
             </script>
 
         <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
-        <!-- <script src="js/micro-template.js"></script> -->
         <script src="js/script.js"></script>
     </body>
 </html>
