@@ -52,8 +52,33 @@ document.addEventListener("DOMContentLoaded", function() {
                 pass = false;
             }
         }
-        var message = pass ? "correct" : "incorrect";
-        console.log(message);
+        var feedback = pass ? { message: "Correct!", className: "success" }
+                            : { message: "Inorrect!", className:"warning" };
+
+        // Display feedback in modal window
+        var modal = modal;
+        var overlay = document.createElement("div");
+        overlay.className = "overlay";
+        document.body.appendChild(overlay);
+        var win = document.createElement("div");
+        win.className = "modal_message";
+        win.innerHTML = feedback.message;
+        win.classList.add(feedback.className);
+        win.classList.add("button-success");
+        document.body.appendChild(win);
+
+        var close = document.createElement("span");
+        close.innerHTML = "Close";
+        close.className = "pure-button pure-button-primary close_button";
+        win.appendChild(close);
+
+        close.addEventListener("click", function() {
+            win.removeChild(close);
+            document.body.removeChild(win);
+            document.body.removeChild(overlay);
+            close = null; // clean up eventlistener
+
+        });
     });
 
 });
