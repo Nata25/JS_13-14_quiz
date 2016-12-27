@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             : { message: "Inorrect!", className:"warning" };
 
         // Display feedback in modal window
-        var modal = modal;
+        var modal = document.createElement("div");
+        document.body.modal;
         var overlay = document.createElement("div");
         overlay.className = "overlay";
         document.body.appendChild(overlay);
