@@ -7,3 +7,5 @@ DOM sctructure of the quiz is build using [LoDash _.template()](https://lodash.c
 Results are checked and displayed in a pop-up window (CSS3 and Core JS, no jQuery).
 
 `use strict` directive is applied.
+
+[Open on .github.io](https://nata25.github.io/JS_13-14_quiz-advanced/).
